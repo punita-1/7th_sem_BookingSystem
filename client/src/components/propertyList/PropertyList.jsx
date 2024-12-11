@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import "./propertyList.css";
 
 const PropertyList = () => {
   const { data, loading, error } = useFetch("/hotels/countByType");
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const images = [
     "https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o=",
@@ -11,6 +13,12 @@ const PropertyList = () => {
     "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-villas_300/dd0d7f8202676306a661aa4f0cf1ffab31286211.jpg",
     "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg",
   ];
+
+  const handleCategoryClick = (category) => {
+    // Navigate to the /hotels page with a query parameter or category if needed
+    navigate("/hotels", { state: { category } });
+  };
+
   return (
     <div className="pList">
       {loading ? (
@@ -19,7 +27,11 @@ const PropertyList = () => {
         <>
           {data &&
             images.map((img, i) => (
-              <div className="pListItem" key={i}>
+              <div
+                className="pListItem"
+                key={i}
+                onClick={() => handleCategoryClick(data[i]?.type)} // Add the click handler here
+              >
                 <img
                   src={img}
                   alt=""

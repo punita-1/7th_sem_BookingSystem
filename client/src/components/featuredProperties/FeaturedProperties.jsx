@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
 
 const FeaturedProperties = () => {
   const { data, loading, error } = useFetch("/hotels?featured=true&limit=4");
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  const handleClick = () => {
+    // Navigate to /hotels when a property is clicked
+    navigate("/hotels");
+  };
 
   return (
     <div className="fp">
@@ -14,7 +21,7 @@ const FeaturedProperties = () => {
         <>
           {data.length > 0 ? (
             data.map((item) => (
-              <div className="fpItem" key={item._id}>
+              <div className="fpItem" key={item._id} onClick={handleClick}>
                 <img
                   src={item.photos && item.photos[0]} // Fallback if photos are missing
                   alt={item.name || "Featured Property"} // Fallback if name is missing

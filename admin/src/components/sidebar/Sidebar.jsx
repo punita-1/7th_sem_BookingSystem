@@ -55,10 +55,10 @@ const Sidebar = () => {
               <span>Rooms</span>
             </li>
           </Link>
-          <li>
+          {/* <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>
-          </li>
+          </li> */}
           <p className="title">USEFUL</p>
           <li>
             <InsertChartIcon className="icon" />
@@ -69,10 +69,10 @@ const Sidebar = () => {
             <span>Notifications</span>
           </li>
           <p className="title">SERVICE</p>
-          <li>
+          {/* <li>
             <SettingsSystemDaydreamOutlinedIcon className="icon" />
             <span>System Health</span>
-          </li>
+          </li> */}
           <li>
             <PsychologyOutlinedIcon className="icon" />
             <span>Logs</span>
